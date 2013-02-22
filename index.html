@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Quintus Level Generator</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://raw.github.com/douglascrockford/JSON-js/master/json2.js"></script>
+        <style>
+            .editor {
+                border: 1px solid black;
+            }
+            .block {
+                float: left;
+            }
+        </style>
+        <script>
+            var matrix = new Array();
+            var levelWidth;
+            var levelHeight;
+            var tileWidth;
+            var tileHeight;
+            var tileUrl;
+            var tileSize;
+            $(document).ready(function() {
+                $('body').on('click', '.block', function() {
+                    var col = $(this).data('col');
+                    var row = $(this).data('row');
+                    var bgpos = $(this).css('background-position');
+                    matrix[col][row] = (matrix[col][row]+1)%tileSize;
+                    $(this).css('background-position', '-=32px');
+                    var myJson = JSON.stringify(matrix);
+                    $('.export textarea').val(myJson);
+                })
+                
+                $('.generate-clean').click(function() {
+                    levelWidth = $('.level-width').val();
+                    levelHeight = $('.level-height').val();
+                    tileWidth = $('.tile-width').val();
+                    tileHeight = $('.tile-height').val();
+                    tileUrl = $('.tile-url').val();
+                    tileSize = $('.tile-size').val();
+                    matrix = new Array();
+                    $('.editor').html('');      // Clean old level
+                    $('.editor').css({          // Set editor size
+                        'width': levelWidth*tileWidth,
+                        'height': levelHeight*tileHeight
+                    })
+                    
+                    for(var i = 0; i < levelHeight; i++) {
+                        matrix[i] = new Array();
+                        for(var j = 0; j < levelWidth; j++) {
+                            $('.editor').append('<div class="block" data-row="'+j+'" data-col="'+i+'"></div>');
+                            matrix[i][j] = 0;
+                        }
+                    }
+                    $('.block').css({
+                        'width': tileWidth,
+                        'height': tileHeight,
+                        'background-image': "url('"+tileUrl+"')",
+                        'background-position': '0px'
+                    })
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <div class="header">Quintos Level Generator</div>
+        <div class="options">
+            Level width: <input class="level-width" value="5" type="text"/>
+            Level height: <input class="level-height" value="3" type="text"/><br />
+            Tile width: <input class="tile-width" value="32" type="text"/>
+            Tile height: <input class="tile-height" value="32" type="text"/><br />
+            Tile size: <input class="tile-size" value="3" type="text"/>
+            Tile url: <input class="tile-url" value="http://murilopolese.com.br/roxanecountdown/images/tiles.png" type="text"/><br />
+            <button class="generate-clean">Generate clean level</button>
+        </div>
+        <div class="editor"></div>
+        <div class="export">
+            <textarea></textarea>
+        </div>
+        <div class="footer"></div>
+    </body>
+</html>
