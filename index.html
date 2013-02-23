@@ -3,89 +3,64 @@
     <head>
         <meta charset="UTF-8">
         <title>Quintus Level Generator</title>
-        <!-- 
-        Well... I am not sure about this way and what libraries are better,
-        so let request them from remote locations 
-        -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="https://raw.github.com/douglascrockford/JSON-js/master/json2.js"></script>
-        <style>
-            .editor {
-                border: 1px solid black;
-            }
-            .block {
-                float: left;
-            }
-        </style>
-        <script>
-            var matrix = new Array();
-            $(document).ready(function() {
-                // Binding click on level construction block
-                $('body').on('click', '.block', function() {
-                    var col = $(this).data('col');
-                    var row = $(this).data('row');
-                    var bgpos = $(this).css('background-position');
-                    // Toggle between the tiles
-                    matrix[col][row] = (matrix[col][row]+1)%tileSize;
-                    $(this).css('background-position', '-=32px');
-                    // Write the JSON in the "export" textarea
-                    var myJson = JSON.stringify(matrix);
-                    $('.export textarea').val(myJson);
-                })
-                
-                $('.generate-clean').click(function() {
-                    // Get the values from form
-                    var levelWidth = $('.level-width').val();
-                    var levelHeight = $('.level-height').val();
-                    var tileWidth = $('.tile-width').val();
-                    var tileHeight = $('.tile-height').val();
-                    var tileUrl = $('.tile-url').val();
-                    var tileSize = $('.tile-size').val();
-                    // Clean previous matrices
-                    matrix = new Array();
-                    // Clean previous level
-                    $('.editor').html('');
-                    // Calculate the editor sized based on tilse size
-                    $('.editor').css({
-                        'width': levelWidth*tileWidth,
-                        'height': levelHeight*tileHeight
-                    })
-                    // Populate the editor with empty level constructions blocks
-                    for(var i = 0; i < levelHeight; i++) {
-                        // Initialize array line
-                        matrix[i] = new Array(); 
-                        for(var j = 0; j < levelWidth; j++) {
-                            $('.editor').append('<div class="block" data-row="'+j+'" data-col="'+i+'"></div>');
-                            // Set the first tile as default
-                            matrix[i][j] = 0; 
-                        }
-                    }
-                    // After added, set default style properties to level construction
-                    // blocks based on options form
-                    $('.block').css({
-                        'width': tileWidth,
-                        'height': tileHeight,
-                        'background-image': "url('"+tileUrl+"')",
-                        'background-position': '0px'
-                    })
-                })
-            })
-        </script>
+        <link rel="stylesheet" type="text/css" href="editor.css" />
+        <!--QUINTUS SETUP-->
+        <script src='lib/quintus.js'></script>
+        <script src='lib/quintus_sprites.js'></script>
+        <script src='lib/quintus_anim.js'></script>
+        <script src='lib/quintus_scenes.js'></script>
+        <script src='lib/quintus_input.js'></script>
+        <script src='lib/quintus_2d.js'></script>
+        <script src='lib/quintus_touch.js'></script>
+        <script src='lib/quintus_ui.js'></script>
+        <!--EXTERNAL LIBRARIES-->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/json.js"></script>
+        <script src="editor.js"></script>
     </head>
     <body>
-        <div class="header">Quintus Level Generator</div>
-        <div class="options">
-            Level width: <input class="level-width" value="5" type="text"/>
-            Level height: <input class="level-height" value="3" type="text"/><br />
-            Tile width: <input class="tile-width" value="32" type="text"/>
-            Tile height: <input class="tile-height" value="32" type="text"/><br />
-            Tile size: <input class="tile-size" value="3" type="text"/>
-            Tile url: <input class="tile-url" value="http://murilopolese.com.br/roxanecountdown/images/tiles.png" type="text"/><br />
-            <button class="generate-clean">Generate clean level</button>
+        <div class="header">
+            <h1>
+                Quintus Level Generator
+            </h1>
+            <div class="options left">
+                <h2>Option</h2>
+                <div class="label">
+                    Level width: 
+                </div>
+                <input class="level-width" value="5" type="text"/>
+                <div class="label">
+                    Level height: 
+                </div>
+                <input class="level-height" value="3" type="text"/>
+                <div class="label">
+                    Tile width: 
+                </div>
+                <input class="tile-width" value="32" type="text"/>
+                <div class="label">
+                    Tile height: 
+                </div>
+                <input class="tile-height" value="32" type="text"/>
+                <div class="label">
+                    Tile size: 
+                </div>
+                <input class="tile-size" value="3" type="text"/>
+                <div class="label">
+                    Tile url: 
+                </div>
+                <input class="tile-url" value="http://murilopolese.com.br/roxanecountdown/images/tiles.png" type="text"/><br />
+                <button class="create-level">Generate level</button>
+            </div>
+            <div class="import left">
+                <h2>Import</h2>
+                <textarea class="left"></textarea>
+                <button class="import">Import level</button>
+            </div>
+            <div class="export left">
+                <h2>Exported</h2>
+                <textarea></textarea>
+            </div>
         </div>
-        <div class="editor"></div>
-        <div class="export">
-            <textarea></textarea>
-        </div>
+        <canvas id="editor"></canvas>
     </body>
 </html>

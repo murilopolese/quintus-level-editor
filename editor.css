@@ -1,0 +1,7 @@
+body {font: 16px arial;color: #2B3E4F;}
+.left {float: left}
+.options {width: 410px;}
+.options .label {width: 100px; text-align: right; float: left;}
+.options input {width: 100px; float: left;}
+#editor {border: 1px solid black; float: left; clear: both; width: 0px; height: 0px;}
+.block {float: left;}
