@@ -56,16 +56,21 @@ function exportLevel() {
 $(document).ready(function() {
     // Setup canvas with editor options
     $('.create-level').click(function() {
-        // Reset the game instance
         // Initialize matrix with all 0 by default
         initMatrix(getOptions());
         createLevel(getOptions());
+        // Export canvas to json
         exportLevel();
     });
     
     // Tracking clicks on canvas to add 
-    
-    // Export canvas to json
+    $('#editor').click(function(e) {
+        var x = Math.floor(e.offsetX/getOptions().tileWidth);
+        var y = Math.floor(e.offsetY/getOptions().tileHeight);
+        matrix[y][x] = (matrix[y][x]+1)%getOptions().tileSize;
+        createLevel(getOptions());
+        exportLevel();
+    });
     
     // Import json to canvas
     $('.import-level').click(function() {
