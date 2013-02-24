@@ -50,7 +50,7 @@ function createLevel(options) {
 }
 function exportLevel() {
     matrixJson = JSON.stringify(matrix);
-    $('.export textarea').val(matrixJson);
+    $('textarea.export').val(matrixJson);
 }
 
 $(document).ready(function() {
@@ -63,7 +63,7 @@ $(document).ready(function() {
         exportLevel();
     });
     
-    // Tracking clicks on canvas to add 
+    // Tracking clicks on canvas to add tiles
     $('#editor').click(function(e) {
         var x = Math.floor(e.offsetX/getOptions().tileWidth);
         var y = Math.floor(e.offsetY/getOptions().tileHeight);
@@ -74,7 +74,7 @@ $(document).ready(function() {
     
     // Import json to canvas
     $('.import-level').click(function() {
-        matrix = eval($('.import textarea').val());
+        matrix = eval($('textarea.import').val());
         $('.level-width').val(matrix[0].length);
         $('.level-height').val(matrix.length);
         createLevel(getOptions());

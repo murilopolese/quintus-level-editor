@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Quintus Level Generator</title>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="editor.css" />
         <!--QUINTUS SETUP-->
         <script src='lib/quintus.js'></script>
@@ -19,48 +20,136 @@
         <script src="editor.js"></script>
     </head>
     <body>
-        <div class="header">
-            <h1>
-                Quintus Level Generator
-            </h1>
-            <div class="options left">
-                <h2>Option</h2>
-                <div class="label">
-                    Level width: 
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="brand" href="#">Quintus Level Editor</a>
+                    <!--<div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#about">Editor</a></li>
+                            <li><a href="#contact">Instructions</a></li>
+                        </ul>
+                    </div>/.nav-collapse -->
                 </div>
-                <input class="level-width" value="5" type="text"/>
-                <div class="label">
-                    Level height: 
-                </div>
-                <input class="level-height" value="3" type="text"/>
-                <div class="label">
-                    Tile width: 
-                </div>
-                <input class="tile-width" value="32" type="text"/>
-                <div class="label">
-                    Tile height: 
-                </div>
-                <input class="tile-height" value="32" type="text"/>
-                <div class="label">
-                    Tile size: 
-                </div>
-                <input class="tile-size" value="3" type="text"/>
-                <div class="label">
-                    Tile url: 
-                </div>
-                <input class="tile-url" value="http://murilopolese.com.br/roxanecountdown/images/tiles.png" type="text"/><br />
-                <button class="create-level">Generate level</button>
-            </div>
-            <div class="import left">
-                <h2>Import</h2>
-                <textarea class="left"></textarea>
-                <button class="import-level">Import level</button>
-            </div>
-            <div class="export left">
-                <h2>Exported</h2>
-                <textarea></textarea>
             </div>
         </div>
-        <canvas id="editor"></canvas>
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3">
+                    <div class="well sidebar-nav">
+                        <ul class="nav nav-list">
+                            <li>
+                                <form>
+                                    <fieldset>
+                                        <legend>Step 1</legend>
+                                        <label>Tileset</label>
+                                        <input type="text" class="tile-url" value="https://raw.github.com/murilopolese/Quintus/master/examples/platformer/images/tiles.png">
+                                        <span class="help-block">Paste your tileset url here.</span>
+                                    </fieldset>
+                                </form>
+                            </li>
+                            <li>
+                                <form>
+                                    <fieldset>
+                                        <legend>Step 2</legend>
+                                        <label>Level width</label>
+                                        <input type="text" value="15" class="level-width">tiles
+                                        <label>Level height</label>
+                                        <input type="text" value="10" class="level-height">tiles
+                                        <label>Tile width</label>
+                                        <input type="text" value="32" class="tile-width">px
+                                        <label>Tile height</label>
+                                        <input type="text" value="32" class="tile-height">px
+                                        <label>Tile size</label>
+                                        <input type="text" value="3" class="tile-size">columns
+                                        <a href="javascript:void(0)" class="btn btn-primary create-level">Create level</a>
+                                    </fieldset>
+                                </form>
+                            </li>
+                            <li>
+                                <form>
+                                    <fieldset>
+                                        <legend>Step 3</legend>
+                                        <label>Exporting</label>
+                                        <textarea rows="10" class="export"></textarea>
+                                        <span class="help-block">Here you can copy your level json.</span>
+                                    </fieldset>
+                                </form>
+                            </li>
+                            <li>
+                                <form>
+                                    <fieldset>
+                                        <legend>Step 4</legend>
+                                        <label>Importing</label>
+                                        <textarea rows="10" class="import"></textarea>
+                                        <span class="help-block">Paste here your existing level json.</span>
+                                        <a class="btn btn-primary import-level">Import</a>
+                                    </fieldset>
+                                </form>
+                            </li>
+                        </ul>
+                    </div><!--/.well -->
+                </div><!--/span-->
+                <div class="span9">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <canvas id="editor"></canvas>
+                        </div><!--/span-->
+                    </div><!--/row-->
+                </div>
+                <div class="span12">
+                    <hr>
+                    <footer>
+                        <p><a href="http://murilopolese.com.br">Murilo Polese 2013</a></p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <!--/.fluid-container-->
+        <!--                <div class="header">
+                            <h1>
+                                Quintus Level Generator
+                            </h1>
+                            <div class="options left">
+                                <h2>Option</h2>
+                                <div class="label">
+                                    Level width: 
+                                </div>
+                                <input class="level-width" value="5" type="text"/>
+                                <div class="label">
+                                    Level height: 
+                                </div>
+                                <input class="level-height" value="3" type="text"/>
+                                <div class="label">
+                                    Tile width: 
+                                </div>
+                                <input class="tile-width" value="32" type="text"/>
+                                <div class="label">
+                                    Tile height: 
+                                </div>
+                                <input class="tile-height" value="32" type="text"/>
+                                <div class="label">
+                                    Tile columns: 
+                                </div>
+                                <input class="tile-size" value="3" type="text"/>
+                                <div class="label">
+                                    Tile url: 
+                                </div>
+                                <input class="tile-url" value="http://murilopolese.com.br/roxanecountdown/images/tiles.png" type="text"/><br />
+                                <button class="create-level">Generate level</button>
+                            </div>
+                            <div class="import left">
+                                <h2>Import</h2>
+                                <textarea class="left"></textarea>
+                                <button class="import-level">Import level</button>
+                            </div>
+                            <div class="export left">
+                                <h2>Exported</h2>
+                                <textarea></textarea>
+                            </div>
+                        </div>
+                        <canvas id="editor"></canvas>-->
     </body>
 </html>
