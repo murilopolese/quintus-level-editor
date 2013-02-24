@@ -10,9 +10,7 @@ function getOptions() {
         'tileUrl': $('.tile-url').val()
     }
 }
-function initMatrix() {
-    // Clean previous matrices
-    matrix = new Array();
+function initMatrix(options) {
     for(var i = 0; i < options.levelHeight; i++) {
         matrix[i] = new Array();
         for(var j = 0; j < options.levelWidth; j++) {
@@ -20,16 +18,14 @@ function initMatrix() {
         }
     }
 }
-function createLevel() {
-    // Get options from form
-    var options = getOptions();
-    // Initialize reference matrix
-    initMatrix();
+function createLevel(options) {
     // Calculate the editor size based on tile size
     $('#editor').attr({
         'width': options.levelWidth*options.tileWidth,
         'height': options.levelHeight*options.tileHeight
     });
+    // Clean old instances if exists
+    Q = null;
     // Initialize Quintus.js with modules
     Q =  Quintus({
         imagePath: "" // this allows request asset from remote urls
@@ -52,20 +48,31 @@ function createLevel() {
         Q.stageScene('editor');
     });
 }
+function exportLevel() {
+    matrixJson = JSON.stringify(matrix);
+    $('.export textarea').val(matrixJson);
+}
 
 $(document).ready(function() {
     // Setup canvas with editor options
     $('.create-level').click(function() {
-        Q = null;
-        createLevel();
+        // Reset the game instance
+        // Initialize matrix with all 0 by default
+        initMatrix(getOptions());
+        createLevel(getOptions());
+        exportLevel();
     });
     
-// Tracking clicks on canvas to add 
+    // Tracking clicks on canvas to add 
     
+    // Export canvas to json
     
-// Export canvas to json
-    
-// Import json to canvas
+    // Import json to canvas
+    $('.import-level').click(function() {
+        matrix = eval($('.import textarea').val());
+        createLevel(getOptions());
+        exportLevel();
+    })
     
 // Test the game
     
