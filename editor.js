@@ -70,6 +70,8 @@ $(document).ready(function() {
     // Import json to canvas
     $('.import-level').click(function() {
         matrix = eval($('.import textarea').val());
+        $('.level-width').val(matrix[0].length);
+        $('.level-height').val(matrix.length);
         createLevel(getOptions());
         exportLevel();
     })
