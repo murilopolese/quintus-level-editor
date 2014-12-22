@@ -1,0 +1,9 @@
+{
+  "name": "quintus-level-editor",
+  "version": "0.0.1",
+  "dependencies": {
+  	"quintus": null,
+  	"jquery": null,
+  	"bootstrap": null
+  }
+}

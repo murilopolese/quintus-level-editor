@@ -1,108 +1,16 @@
-<!DOCTYPE HTML>
-<html lang="en">
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Quintus Level Editor</title>
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="editor.css" />
-        <!--QUINTUS SETUP-->
-        <script src='lib/quintus.js'></script>
-        <script src='lib/quintus_sprites.js'></script>
-        <script src='lib/quintus_anim.js'></script>
-        <script src='lib/quintus_scenes.js'></script>
-        <script src='lib/quintus_input.js'></script>
-        <script src='lib/quintus_2d.js'></script>
-        <script src='lib/quintus_touch.js'></script>
-        <script src='lib/quintus_ui.js'></script>
-        <!--EXTERNAL LIBRARIES-->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/json.js"></script>
-        <script src="editor.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="brand" href="#">Quintus Level Editor</a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li><a href="http://html5quintus.com/">Quintus.js</a></li>
-                            <li><a href="https://github.com/murilopolese/quintus-level-editor">GitHub</a></li>
-                            <li><a href="https://plus.google.com/u/0/communities/104292074755089084725">Community</a></li>
-                        </ul>
-                        <p class="navbar-text pull-right">
-                            <a href="http://murilopolese.com.br" class="navbar-link">Murilo Polese</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span3">
-                    <div class="well sidebar-nav">
-                        <ul class="nav nav-list">
-                            <li>
-                                <form>
-                                    <fieldset>
-                                        <legend>Step 1</legend>
-                                        <label>Tileset</label>
-                                        <input type="text" class="tile-url" value="https://raw.github.com/cykod/Quintus/master/examples/platformer/images/tiles.png">
-                                        <span class="help-block">Paste your tileset url here.</span>
-                                    </fieldset>
-                                </form>
-                            </li>
-                            <li>
-                                <form>
-                                    <fieldset>
-                                        <legend>Step 2</legend>
-                                        <label>Level width</label>
-                                        <input type="text" value="15" class="level-width">tiles
-                                        <label>Level height</label>
-                                        <input type="text" value="10" class="level-height">tiles
-                                        <label>Tile width</label>
-                                        <input type="text" value="32" class="tile-width">px
-                                        <label>Tile height</label>
-                                        <input type="text" value="32" class="tile-height">px
-                                        <label>Tile size</label>
-                                        <input type="text" value="3" class="tile-size">columns
-                                        <a href="javascript:void(0)" class="btn btn-primary create-level">Create level</a>
-                                    </fieldset>
-                                </form>
-                            </li>
-                            <li>
-                                <form>
-                                    <fieldset>
-                                        <legend>Step 3</legend>
-                                        <label>Exporting</label>
-                                        <textarea rows="10" class="export"></textarea>
-                                        <span class="help-block">Here you can copy your level json.</span>
-                                    </fieldset>
-                                </form>
-                            </li>
-                            <li>
-                                <form>
-                                    <fieldset>
-                                        <legend>Step 4</legend>
-                                        <label>Importing</label>
-                                        <textarea rows="10" class="import"></textarea>
-                                        <span class="help-block">Paste here your existing level json.</span>
-                                        <a class="btn btn-primary import-level">Import</a>
-                                    </fieldset>
-                                </form>
-                            </li>
-                        </ul>
-                    </div><!--/.well -->
-                </div><!--/span-->
-                <div class="span9">
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <canvas id="editor"></canvas>
-                        </div><!--/span-->
-                    </div><!--/row-->
-                </div>
-            </div>
-        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="vendor/jquery.min.js"><\/script>')</script>
     </body>
 </html>
