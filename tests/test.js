@@ -1,5 +1,34 @@
 var game = require( '../js/game.js' );
 var assert = require( 'assert' );
+// Mock jquery
+var $ = function( selector ) {
+	selector = selector || '';
+	this.resp = undefined;
+	switch( selector ) {
+		case '.sprite-url':
+			this.resp = 'www.google.com.br';
+			break;
+		case '.sprite-size':
+			this.resp = 3;
+			break;
+		case '.tile-width':
+			this.resp = 32;
+			break;
+		case '.tile-height':
+			this.resp = 32;
+			break;
+		case '.level-width':
+			this.resp = 20;
+			break;
+		case '.level-height':
+			this.resp = 10;
+			break;
+		default:
+			break;
+	}
+	this.val = function() { return this.resp };
+	return this;
+}
 
 describe( 'Structure integrity', function() {
 	describe( 'Level properties', function() {
@@ -48,4 +77,26 @@ describe( 'Structure integrity', function() {
 			assert.equal( typeof game.sprite.tileHeight, 'number' );
 		});
 	});
+});
+
+describe( 'Get options', function() {
+	var opts = game.getOptions( $ );
+	it( 'Sprite url', function() {
+		assert.equal( opts.sprite.url, 'www.google.com.br' );
+	});
+	it( 'Sprite size', function() {
+		assert.equal( opts.sprite.size, 3 );
+	});
+	it( 'Tile width', function() {
+		assert.equal( opts.sprite.tileWidth, 32 );
+	});
+	it( 'Tile height', function() {
+		assert.equal( opts.sprite.tileHeight, 32 );
+	});
+	it( 'Level width', function() {
+		assert.equal( opts.level.width, 20 );
+	});
+	it( 'Level height', function() {
+		assert.equal( opts.level.height, 10 );
+	})
 });

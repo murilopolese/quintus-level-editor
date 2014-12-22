@@ -1,0 +1,14 @@
+{
+	"name": "quintus-level-editor-test",
+	"version": "0.0.0",
+	"description": "",
+	"main": "test.js",
+	"scripts": {
+		"test": "npm install && ./node_modules/.bin/mocha test.js -R nyan -b"
+	},
+	"dependencies": {
+		"mocha": "*"
+	},
+	"author": "Murilo Polese",
+	"license": "WTFPL"
+}
