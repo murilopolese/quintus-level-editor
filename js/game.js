@@ -1,20 +1,20 @@
 (function() {
 	var root, Game;
 	root = this;
-	
-	Game = {
-		level: {
+
+	Game = function() {
+		var level = {
 			width: 20,
 			height: 10
-		},
-		sprite: {
+		};
+		var sprite = {
 			url: 'https://raw.github.com/murilopolese/Quintus/master/examples/platformer/images/tiles.png',
 			size: 3,
 			tileWidth: 32,
 			tileHeight: 32,
-		},
-		collisionLayer: [],
-		getOptions: function( $ ) {
+		};
+		var collisionLayer = [];
+		var getOptions = function( $ ) {
 			return {
 				level: {
 					width: parseInt( $( '.level-width' ).val() ),
@@ -27,8 +27,8 @@
 					tileHeight: parseInt( $( '.tile-height' ).val() )
 				}
 			}
-		},
-		setOptions: function( $ ) {
+		};
+		var setOptions = function( $ ) {
 			var opts = this.getOptions( $ );
 			this.level = {
 				width: opts.level.width,
@@ -40,8 +40,8 @@
 				tileWidth: opts.sprite.tileWidth,
 				tileHeight: opts.sprite.tileHeight
 			};
-		},
-		updateCollisionLayerArray: function() {
+		};
+		var updateCollisionLayerArray = function() {
 			var arr = [];
 			for( var line = 0; line < this.level.height; line++ ) {
 				arr[ line ] = [];
@@ -56,8 +56,8 @@
 				}
 			}
 			this.collisionLayer = arr;
-		},
-		toggleTile: function( line, row ) {
+		};
+		var toggleTile = function( line, row ) {
 			line = parseInt( line );
 			row = parseInt( row );
 			if( this.collisionLayer[ line ] != undefined 
@@ -66,7 +66,16 @@
 					( this.collisionLayer[ line ][ row ] + 1 ) % this.sprite.size;
 			}
 		}
-	};
+		return {
+			level: level,
+			sprite: sprite,
+			collisionLayer: collisionLayer,
+			getOptions: getOptions,
+			setOptions: setOptions,
+			updateCollisionLayerArray: updateCollisionLayerArray,
+			toggleTile: toggleTile
+		}
+	}();
 
 	// Node.js
 	if (typeof module !== 'undefined' && module.exports) {

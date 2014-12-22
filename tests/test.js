@@ -1,4 +1,4 @@
-var game = require( '../js/game.js' );
+var Game = require( '../js/game.js' );
 var assert = require( 'assert' );
 // Mock jquery
 var $ = function( selector ) {
@@ -31,6 +31,7 @@ var $ = function( selector ) {
 }
 
 describe( 'Structure integrity', function() {
+	var game = Object.create( Game );
 	describe( 'Level properties', function() {
 		it( 'Level defined', function() {
 			assert.notEqual( game.level, undefined );
@@ -85,6 +86,7 @@ describe( 'Structure integrity', function() {
 });
 
 describe( 'Get options', function() {
+	var game = Object.create( Game );
 	var opts = game.getOptions( $ );
 	it( 'Sprite url', function() {
 		assert.equal( opts.sprite.url, $( '.sprite-url' ).val() );
@@ -107,6 +109,7 @@ describe( 'Get options', function() {
 });
 
 describe( 'Set options', function() {
+	var game = Object.create( Game );
 	game.setOptions( $ );
 	it( 'Sprite url', function() {
 		assert.equal( game.sprite.url, $( '.sprite-url' ).val() );
@@ -129,17 +132,22 @@ describe( 'Set options', function() {
 });
 
 describe( 'Collision layer array', function() {
-	game.updateCollisionLayerArray();
 	it( 'Array "height"', function() {
+		var game = Object.create( Game );
+		game.updateCollisionLayerArray();
 		assert.equal( game.collisionLayer.length, game.level.height );
 	});
 	it( 'Array "width"', function() {
+		var game = Object.create( Game );
+		game.updateCollisionLayerArray();
 		game.collisionLayer.forEach( function( line ) {
 			assert.equal( line instanceof Array, true );
 			assert.equal( line.length, game.level.width );
 		})
 	});
 	it( 'Toggle tile', function() {
+		var game = Object.create( Game );
+		game.updateCollisionLayerArray();
 		game.sprite.size = 3;
 		assert.equal( game.collisionLayer[ 0 ][ 0 ], 0 );
 		game.toggleTile( 0, 0 );
@@ -149,4 +157,9 @@ describe( 'Collision layer array', function() {
 		game.toggleTile( 0, 0 );
 		assert.equal( game.collisionLayer[ 0 ][ 0 ], 0 );
 	});
+	it( 'Resize array', function() {
+		var game = Object.create( Game );
+		game.updateCollisionLayerArray();
+
+	})
 });
