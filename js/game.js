@@ -56,6 +56,15 @@
 				}
 			}
 			this.collisionLayer = arr;
+		},
+		toggleTile: function( line, row ) {
+			line = parseInt( line );
+			row = parseInt( row );
+			if( this.collisionLayer[ line ] != undefined 
+				&& this.collisionLayer[ line ][ row ] != undefined ) {
+				this.collisionLayer[ line ][ row ] =
+					( this.collisionLayer[ line ][ row ] + 1 ) % this.sprite.size;
+			}
 		}
 	};
 

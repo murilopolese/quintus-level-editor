@@ -139,4 +139,14 @@ describe( 'Collision layer array', function() {
 			assert.equal( line.length, game.level.width );
 		})
 	});
+	it( 'Toggle tile', function() {
+		game.sprite.size = 3;
+		assert.equal( game.collisionLayer[ 0 ][ 0 ], 0 );
+		game.toggleTile( 0, 0 );
+		assert.equal( game.collisionLayer[ 0 ][ 0 ], 1 );
+		game.toggleTile( 0, 0 );
+		assert.equal( game.collisionLayer[ 0 ][ 0 ], 2 );
+		game.toggleTile( 0, 0 );
+		assert.equal( game.collisionLayer[ 0 ][ 0 ], 0 );
+	});
 });
