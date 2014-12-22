@@ -1,4 +1,4 @@
-var Game = require( '../js/game.js' );
+var Editor = require( '../js/editor.js' );
 var assert = require( 'assert' );
 // Mock jquery
 var $ = function( selector ) {
@@ -31,63 +31,63 @@ var $ = function( selector ) {
 }
 
 describe( 'Structure integrity', function() {
-	var game = Object.create( Game );
+	var editor = Object.create( Editor );
 	describe( 'Level properties', function() {
 		it( 'Level defined', function() {
-			assert.notEqual( game.level, undefined );
+			assert.notEqual( editor.level, undefined );
 		});
 		it( 'Level width defined', function() {
-			assert.notEqual( game.level.width, undefined );
+			assert.notEqual( editor.level.width, undefined );
 		});
 		it( 'Level width is a number', function() {
-			assert.equal( typeof game.level.width, 'number' );
+			assert.equal( typeof editor.level.width, 'number' );
 		});
 		it( 'Level height defined', function() {
-			assert.notEqual( game.level.height, undefined );
+			assert.notEqual( editor.level.height, undefined );
 		});
 		it( 'Level height is a number', function() {
-			assert.equal( typeof game.level.height, 'number' );
+			assert.equal( typeof editor.level.height, 'number' );
 		});
 	});
 	describe( 'Sprite properties', function() {
 		it( 'Sprite defined', function() {
-			assert.notEqual( game.sprite, undefined );
+			assert.notEqual( editor.sprite, undefined );
 		});
 		it( 'Sprite size defined', function() {
-			assert.notEqual( game.sprite.size, undefined );
+			assert.notEqual( editor.sprite.size, undefined );
 		});
 		it( 'Sprite size is a number', function() {
-			assert.equal( typeof game.sprite.size, 'number' )
+			assert.equal( typeof editor.sprite.size, 'number' )
 		});
 		it( 'Sprite  url defined', function() {
-			assert.notEqual( game.sprite.url, undefined );
+			assert.notEqual( editor.sprite.url, undefined );
 		});
 		it( 'Sprite url is a string', function() {
-			assert.equal( typeof game.sprite.url, 'string' );
+			assert.equal( typeof editor.sprite.url, 'string' );
 		});
 		it( 'Tile width defined', function() {
-			assert.notEqual( game.sprite.tileWidth, undefined );
+			assert.notEqual( editor.sprite.tileWidth, undefined );
 		});
 		it( 'Tile width is a number', function() {
-			assert.equal( typeof game.sprite.tileWidth, 'number' );
+			assert.equal( typeof editor.sprite.tileWidth, 'number' );
 		});
 		it( 'Tile Height defined', function() {
-			assert.notEqual( game.sprite.tileHeight, undefined );
+			assert.notEqual( editor.sprite.tileHeight, undefined );
 		});
 		it( 'Tile Height is a number', function() {
-			assert.equal( typeof game.sprite.tileHeight, 'number' );
+			assert.equal( typeof editor.sprite.tileHeight, 'number' );
 		});
 	});
 	describe( 'Collision layer array', function() {
 		it( 'Collision Layer Array defined', function() {
-			assert.notEqual( game.collisionLayer, undefined );
+			assert.notEqual( editor.collisionLayer, undefined );
 		});
 	});
 });
 
 describe( 'Get options', function() {
-	var game = Object.create( Game );
-	var opts = game.getOptions( $ );
+	var editor = Object.create( Editor );
+	var opts = editor.getOptions( $ );
 	it( 'Sprite url', function() {
 		assert.equal( opts.sprite.url, $( '.sprite-url' ).val() );
 	});
@@ -109,36 +109,36 @@ describe( 'Get options', function() {
 });
 
 describe( 'Set options', function() {
-	var game = Object.create( Game );
-	game.setOptions( $ );
+	var editor = Object.create( Editor );
+	editor.setOptions( $ );
 	it( 'Sprite url', function() {
-		assert.equal( game.sprite.url, $( '.sprite-url' ).val() );
+		assert.equal( editor.sprite.url, $( '.sprite-url' ).val() );
 	});
 	it( 'Sprite size', function() {
-		assert.equal( game.sprite.size, $( '.sprite-size' ).val() );
+		assert.equal( editor.sprite.size, $( '.sprite-size' ).val() );
 	});
 	it( 'Tile width', function() {
-		assert.equal( game.sprite.tileWidth, $( '.tile-width').val() );
+		assert.equal( editor.sprite.tileWidth, $( '.tile-width').val() );
 	});
 	it( 'Tile height', function() {
-		assert.equal( game.sprite.tileHeight, $( '.tile-height').val() );
+		assert.equal( editor.sprite.tileHeight, $( '.tile-height').val() );
 	});
 	it( 'Level width', function() {
-		assert.equal( game.level.width, $( '.level-width' ).val() );
+		assert.equal( editor.level.width, $( '.level-width' ).val() );
 	});
 	it( 'Level height', function() {
-		assert.equal( game.level.height, $( '.level-height' ).val() );
+		assert.equal( editor.level.height, $( '.level-height' ).val() );
 	})
 });
 
 describe( 'Collision layer array', function() {
 	it( 'Array "height"', function() {
-		var game = Object.create( Game );
+		var game = Object.create( Editor );
 		game.updateCollisionLayerArray();
 		assert.equal( game.collisionLayer.length, game.level.height );
 	});
 	it( 'Array "width"', function() {
-		var game = Object.create( Game );
+		var game = Object.create( Editor );
 		game.updateCollisionLayerArray();
 		game.collisionLayer.forEach( function( line ) {
 			assert.equal( line instanceof Array, true );
@@ -146,7 +146,7 @@ describe( 'Collision layer array', function() {
 		})
 	});
 	it( 'Toggle tile', function() {
-		var game = Object.create( Game );
+		var game = Object.create( Editor );
 		game.updateCollisionLayerArray();
 		game.sprite.size = 3;
 		assert.equal( game.collisionLayer[ 0 ][ 0 ], 0 );
@@ -158,7 +158,7 @@ describe( 'Collision layer array', function() {
 		assert.equal( game.collisionLayer[ 0 ][ 0 ], 0 );
 	});
 	it( 'Resize array', function() {
-		var game = Object.create( Game );
+		var game = Object.create( Editor );
 		game.updateCollisionLayerArray();
 		assert.equal( game.collisionLayer[ 1 ][ 1 ], 0 );
 

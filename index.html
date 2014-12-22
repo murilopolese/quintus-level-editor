@@ -17,41 +17,41 @@
 		<div class="container">
 			<!-- STEP #! -->
 			<div class="row">
-				<form role="form" class="well">
+				<form role="form" class="well step1">
 					<fieldset class="form-group">
 						<div class="col-md-12">
 							<legend>Step #1 (sprite and level config)</legend>
 						</div>
 						<div class="col-md-4">
 							<label>Sprite url</label>
-							<input class="form-control sprite-url" type="text">
+							<input name="sprite_url" class="form-control sprite-url" type="text">
 						</div>
 						<div class="col-md-4">
 							<label>Tile width</label>
-							<input class="form-control tile-width" type="text">
+							<input name="tile_width" class="form-control tile-width" type="text">
 						</div>
 						<div class="col-md-4">
 							<label>Tile height</label>
-							<input class="form-control tile-height" type="text">
+							<input name="tile_height" class="form-control tile-height" type="text">
 						</div>
 					</fieldset>
 					<fieldset class="form-group">
 						<div class="col-md-4">
 							<label>Sprite size (columns)</label>
-							<input class="form-control sprite-size" type="text">
+							<input name="sprite_size" class="form-control sprite-size" type="text">
 						</div>
 						<div class="col-md-4">
 							<label>Level width (tiles)</label>
-							<input class="form-control level-width" type="text">
+							<input name="level_width" class="form-control level-width" type="text">
 						</div>
 						<div class="col-md-4">
 							<label>Level height (tiles)</label>
-							<input class="form-control level-height" type="text">
+							<input name="level_height" class="form-control level-height" type="text">
 						</div>
 					</fieldset>
 					<fieldset class="form-group">
 						<div class="col-md-12">
-							<button class="form-control btn btn-primary">Submit</button>
+							<button class="form-control btn btn-primary create-game">Submit</button>
 						</div>
 					</fieldset>
 				</form>
@@ -102,6 +102,7 @@
 		<script src='vendor/quintus/lib/quintus_touch.js'></script>
 		<script src='vendor/quintus/lib/quintus_ui.js'></script>
 		<!-- MAIN EDITOR FILE -->
+		<script src='js/editor.js'></script>
 		<script src='js/game.js'></script>
 	</body>
 </html>
