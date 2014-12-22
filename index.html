@@ -2,15 +2,98 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Quintus Level Editor</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="vendor/jquery.min.js"><\/script>')</script>
-    </body>
+<!--[if gt IE 8]><!--> 
+<html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Quintus Level Editor</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.min.css"> -->
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+
+		<div class="container">
+			<div class="row">
+				<form role="form" class="well">
+					<!-- STEP #! -->
+					<fieldset class="form-group">
+						<div class="col-md-12">
+							<legend>Step #1 (sprite and level config)</legend>
+						</div>
+						<div class="col-md-4">
+							<label>Sprite url</label>
+							<input class="form-control sprite-url" type="text">
+						</div>
+						<div class="col-md-4">
+							<label>Tile width</label>
+							<input class="form-control tile-width" type="text">
+						</div>
+						<div class="col-md-4">
+							<label>Tile height</label>
+							<input class="form-control tile-height" type="text">
+						</div>
+					</fieldset>
+					<fieldset class="form-group">
+						<div class="col-md-6">
+							<label>Level width (tiles)</label>
+							<input class="form-control level-width" type="text">
+						</div>
+						<div class="col-md-6">
+							<label>Level height (tiles)</label>
+							<input class="form-control level-height" type="text">
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<legend>Step #2 (design your level)</legend>
+				</div>
+				<div class="col-md-12">
+					<div id="game"></div>
+				</div>
+			</div>
+			<div class="row">
+				<form role="role" class="well">
+					<!-- STEP #3 -->
+					<fieldset class="form-group">
+						<legend>Step #3 (export)</legend>
+						<textarea rows="5" class="form-control export"></textarea>
+						<p class="text-muted small">
+							* Array representing your stage.
+						</p>
+					</fieldset>
+					<!-- STEP #4 -->
+					<fieldset class="form-group">
+						<legend>Extra (import)</legend>
+						<textarea rows="5" class="form-control import"></textarea>
+						<p class="text-muted small">
+							* Paste here your array.
+						</p>
+						<button class="btn btn-primary">Import</button>
+					</fieldset>
+				</form>
+			</div>    
+		</div>    
+
+		<!-- JQUERY -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="vendor/jquery/dist/jquery.min.js"><\/script>')</script>
+		<!-- BOOTSTRAP JS -->
+		<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- QUINTUS -->
+		<script src='vendor/quintus/lib/quintus.js'></script>
+		<script src='vendor/quintus/lib/quintus_sprites.js'></script>
+		<script src='vendor/quintus/lib/quintus_anim.js'></script>
+		<script src='vendor/quintus/lib/quintus_scenes.js'></script>
+		<script src='vendor/quintus/lib/quintus_input.js'></script>
+		<script src='vendor/quintus/lib/quintus_2d.js'></script>
+		<script src='vendor/quintus/lib/quintus_touch.js'></script>
+		<script src='vendor/quintus/lib/quintus_ui.js'></script>
+		<!-- MAIN EDITOR FILE -->
+		<script src='js/editor.js'></script>
+	</body>
 </html>
