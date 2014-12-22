@@ -65,6 +65,15 @@
 				this.collisionLayer[ line ][ row ] =
 					( this.collisionLayer[ line ][ row ] + 1 ) % this.sprite.size;
 			}
+		};
+		var resizeCollisionLayerArray = function( width, height ) {
+			width = parseInt( width );
+			height = parseInt( height );
+			this.level = {
+				width: width,
+				height: height
+			};
+			this.updateCollisionLayerArray();
 		}
 		return {
 			level: level,
@@ -73,7 +82,8 @@
 			getOptions: getOptions,
 			setOptions: setOptions,
 			updateCollisionLayerArray: updateCollisionLayerArray,
-			toggleTile: toggleTile
+			toggleTile: toggleTile,
+			resizeCollisionLayerArray: resizeCollisionLayerArray
 		}
 	}();
 

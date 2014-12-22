@@ -160,6 +160,10 @@ describe( 'Collision layer array', function() {
 	it( 'Resize array', function() {
 		var game = Object.create( Game );
 		game.updateCollisionLayerArray();
+		assert.equal( game.collisionLayer[ 1 ][ 1 ], 0 );
 
+		game.toggleTile( 1, 1 );
+		game.resizeCollisionLayerArray( 21, 11 );
+		assert.equal( game.collisionLayer[ 1 ][ 1 ], 1 );
 	})
 });
