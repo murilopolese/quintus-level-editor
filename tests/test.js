@@ -9,19 +9,19 @@ var $ = function( selector ) {
 			this.resp = 'www.google.com.br';
 			break;
 		case '.sprite-size':
-			this.resp = 3;
+			this.resp = 13;
 			break;
 		case '.tile-width':
-			this.resp = 32;
+			this.resp = 13;
 			break;
 		case '.tile-height':
-			this.resp = 32;
+			this.resp = 13;
 			break;
 		case '.level-width':
-			this.resp = 20;
+			this.resp = 13;
 			break;
 		case '.level-height':
-			this.resp = 10;
+			this.resp = 13;
 			break;
 		default:
 			break;
@@ -77,26 +77,66 @@ describe( 'Structure integrity', function() {
 			assert.equal( typeof game.sprite.tileHeight, 'number' );
 		});
 	});
+	describe( 'Collision layer array', function() {
+		it( 'Collision Layer Array defined', function() {
+			assert.notEqual( game.collisionLayer, undefined );
+		});
+	});
 });
 
 describe( 'Get options', function() {
 	var opts = game.getOptions( $ );
 	it( 'Sprite url', function() {
-		assert.equal( opts.sprite.url, 'www.google.com.br' );
+		assert.equal( opts.sprite.url, $( '.sprite-url' ).val() );
 	});
 	it( 'Sprite size', function() {
-		assert.equal( opts.sprite.size, 3 );
+		assert.equal( opts.sprite.size, $( '.sprite-size' ).val() );
 	});
 	it( 'Tile width', function() {
-		assert.equal( opts.sprite.tileWidth, 32 );
+		assert.equal( opts.sprite.tileWidth, $( '.tile-width').val() );
 	});
 	it( 'Tile height', function() {
-		assert.equal( opts.sprite.tileHeight, 32 );
+		assert.equal( opts.sprite.tileHeight, $( '.tile-height').val() );
 	});
 	it( 'Level width', function() {
-		assert.equal( opts.level.width, 20 );
+		assert.equal( opts.level.width, $( '.level-width' ).val() );
 	});
 	it( 'Level height', function() {
-		assert.equal( opts.level.height, 10 );
+		assert.equal( opts.level.height, $( '.level-height' ).val() );
 	})
+});
+
+describe( 'Set options', function() {
+	game.setOptions( $ );
+	it( 'Sprite url', function() {
+		assert.equal( game.sprite.url, $( '.sprite-url' ).val() );
+	});
+	it( 'Sprite size', function() {
+		assert.equal( game.sprite.size, $( '.sprite-size' ).val() );
+	});
+	it( 'Tile width', function() {
+		assert.equal( game.sprite.tileWidth, $( '.tile-width').val() );
+	});
+	it( 'Tile height', function() {
+		assert.equal( game.sprite.tileHeight, $( '.tile-height').val() );
+	});
+	it( 'Level width', function() {
+		assert.equal( game.level.width, $( '.level-width' ).val() );
+	});
+	it( 'Level height', function() {
+		assert.equal( game.level.height, $( '.level-height' ).val() );
+	})
+});
+
+describe( 'Collision layer array', function() {
+	game.updateCollisionLayerArray();
+	it( 'Array "height"', function() {
+		assert.equal( game.collisionLayer.length, game.level.height );
+	});
+	it( 'Array "width"', function() {
+		game.collisionLayer.forEach( function( line ) {
+			assert.equal( line instanceof Array, true );
+			assert.equal( line.length, game.level.width );
+		})
+	});
 });

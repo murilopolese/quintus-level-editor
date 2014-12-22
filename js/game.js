@@ -28,16 +28,17 @@
 				}
 			}
 		},
-		setOptions: function( opts ) {
+		setOptions: function( $ ) {
+			var opts = this.getOptions( $ );
 			this.level = {
-				width: parseInt( $( '.level-width' ).val() ),
-				height: parseInt( $( '.level-height' ).val() )
+				width: opts.level.width,
+				height: opts.level.height
 			},
 			this.sprite = {
-				url: $( '.sprite-url' ).val() + '', // Hack casting
-				size: parseInt( $( '.sprite-size' ).val() ),
-				tileWidth: parseInt( $( '.tile-width' ).val() ),
-				tileHeight: parseInt( $( '.tile-height' ).val() )
+				url: opts.sprite.url,
+				size: opts.sprite.size,
+				tileWidth: opts.sprite.tileWidth,
+				tileHeight: opts.sprite.tileHeight
 			};
 		},
 		updateCollisionLayerArray: function() {
