@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="css/main.css">
 	</head>
 	<body>
-		
+		<br>
 		<div class="container">
 			<!-- STEP #! -->
 			<div class="row">
@@ -24,29 +24,29 @@
 						</div>
 						<div class="col-md-4">
 							<label>Sprite url</label>
-							<input name="sprite_url" class="form-control sprite-url" type="text">
+							<input name="sprite_url" class="form-control sprite-url" type="text" value="http://i1116.photobucket.com/albums/k575/Stugace/terrain.png">
 						</div>
 						<div class="col-md-4">
 							<label>Tile width</label>
-							<input name="tile_width" class="form-control tile-width" type="text">
+							<input name="tile_width" class="form-control tile-width" type="text" value="32">
 						</div>
 						<div class="col-md-4">
 							<label>Tile height</label>
-							<input name="tile_height" class="form-control tile-height" type="text">
+							<input name="tile_height" class="form-control tile-height" type="text" value="32">
 						</div>
 					</fieldset>
 					<fieldset class="form-group">
 						<div class="col-md-4">
 							<label>Sprite size (columns)</label>
-							<input name="sprite_size" class="form-control sprite-size" type="text">
+							<input name="sprite_size" class="form-control sprite-size" type="text" value="5">
 						</div>
 						<div class="col-md-4">
 							<label>Level width (tiles)</label>
-							<input name="level_width" class="form-control level-width" type="text">
+							<input name="level_width" class="form-control level-width" type="text" value="15">
 						</div>
 						<div class="col-md-4">
 							<label>Level height (tiles)</label>
-							<input name="level_height" class="form-control level-height" type="text">
+							<input name="level_height" class="form-control level-height" type="text" value="10">
 						</div>
 					</fieldset>
 					<fieldset class="form-group">
@@ -61,8 +61,9 @@
 				<div class="col-md-12">
 					<legend>Step #2 (design your level)</legend>
 				</div>
-				<div class="col-md-12">
-					<div id="game"></div>
+				<div class="col-md-12" style="overflow: scroll">
+					<canvas id="game" style="border: solid 1px black;"></canvas>
+					<br>
 				</div>
 			</div>
 			<!-- STEP #3 -->
